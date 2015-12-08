@@ -1,10 +1,10 @@
 
-feature "User name" do
+feature 'Enter names' do
 
   # As two Players,
   # So we can play a personalised game of Battle,
   # We want to Start a fight by entering our Names and seeing them
-  scenario 'allows users to enter names and see them' do
+  scenario 'allows users to submit names and see them' do
     visit '/'
     fill_in(:player_1_name, with: 'Johnny Cash')
     fill_in(:player_2_name, with: 'Timmy Jones')
