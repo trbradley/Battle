@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
   subject(:game) { described_class.new(player_1, player_2) }
-  let(:player_1) { double :player}
-  let(:player_2) { double :player }
+  let(:player_1) { double :player, name: 'Johnny Cash' }
+  let(:player_2) { double :player, name: 'Bruce Springsteen', receive_damage: true }
 
   it 'returns the names of players participating' do
     expect(game.players).to eq [player_1, player_2]
@@ -21,6 +21,18 @@ describe Game do
     it 'damages the opponent\'s HP' do
       expect(player_2).to receive(:receive_damage)
       game.attack(player_2)
+    end
+  end
+
+  describe '#turn' do
+    it 'increments after each move' do
+      game.attack(player_2)
+      expect(game.turn).to eq 1
+    end
+
+    it 'tells us whose turn it is' do
+      game.attack(player_2)
+      expect(game.next_player).to eq player_2.name
     end
   end
 end
