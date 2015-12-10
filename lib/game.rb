@@ -1,3 +1,5 @@
+require 'forwardable'
+
 class Game
   extend Forwardable
   def_delegator :player_1, :name, :player_1_name
