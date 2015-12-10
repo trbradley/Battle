@@ -24,15 +24,16 @@ describe Game do
     end
   end
 
-  describe '#turn' do
-    it 'increments after each move' do
-      game.attack(player_2)
-      expect(game.turn).to eq 1
+  describe '#current_turn' do
+    it 'starts as player 1' do
+      expect(game.current_turn).to eq player_1
     end
+  end
 
-    it 'tells us whose turn it is' do
-      game.attack(player_2)
-      expect(game.next_player).to eq player_2.name
+  describe 'switch_turns' do
+    it 'switches the turn' do
+      game.switch_turns
+      expect(game.current_turn).to eq player_2
     end
   end
 end

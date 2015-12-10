@@ -7,16 +7,15 @@ class Game
   def_delegator :player_1, :hit_points, :player_1_hp
   def_delegator :player_2, :hit_points, :player_2_hp
 
-  attr_reader :players, :turn
+  attr_reader :players, :current_turn
 
   def initialize(player_1, player_2)
     @players = [player_1, player_2]
-    @turn = 0
+    @current_turn = player_1
   end
 
   def attack(player)
     player.receive_damage
-    @turn += 1
   end
 
   def player_1
@@ -27,13 +26,13 @@ class Game
     @players[1]
   end
 
-  def next_player
-    @players[player_selector].name
+  def switch_turns
+    @current_turn = opponent_of(current_turn)
   end
 
   private
 
-  def player_selector
-    @turn % players.length
+  def opponent_of(the_player)
+    @players.find { |player| player != the_player }
   end
 end
