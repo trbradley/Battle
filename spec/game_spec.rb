@@ -1,7 +1,7 @@
 require 'game'
 
 describe Game do
-  subject(:game) { described_class.new }
+  subject(:game) { described_class.new('Johnny Cash','Bruce Springsteen') }
   let(:player1) { double :player }
   let(:player2) { double :player }
 
@@ -11,4 +11,17 @@ describe Game do
       game.attack(player2)
     end
   end
+
+  describe '#player_1' do
+    it 'returns the first player' do
+      expect(game.player_1).to eq 'Johnny Cash'
+    end
+  end
+
+  describe '#player_1' do
+    it 'return the first player' do
+      expect(game.player_2).to eq 'Bruce Springsteen'
+    end
+  end
+
 end
