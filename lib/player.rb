@@ -10,10 +10,6 @@ class Player
     @hit_points = DEFAULT_HEALTH
   end
 
-  def attack(opponent)
-    opponent.receive_damage
-  end
-
   def receive_damage
     @hit_points -= DAMAGE
   end
