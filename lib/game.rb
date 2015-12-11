@@ -30,6 +30,10 @@ class Game
     @current_turn = opponent_of(current_turn)
   end
 
+  def previous_player
+    opponent_of(current_turn)
+  end
+
   private
 
   def opponent_of(the_player)
