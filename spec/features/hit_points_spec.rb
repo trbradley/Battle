@@ -16,4 +16,12 @@ feature 'hitpoints' do
       expect(page).to have_content 'Bruce Springsteen: 60 HP'
     end
   end
+
+  feature 'losing game' do
+    scenario 'hit points reaches 0' do
+      sign_in_and_play
+      11.times { attack_and_return }
+      expect(page).to have_content 'Bruce Springsteen: You Lose!'
+    end
+  end
 end

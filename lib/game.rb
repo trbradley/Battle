@@ -14,10 +14,6 @@ class Game
     @current_turn = player_1
   end
 
-  # def attack(player)
-  #   player.receive_damage
-  # end
-
   def player_1
     @players[0]
   end
@@ -32,5 +28,9 @@ class Game
 
   def opponent_of(the_player)
     @players.find { |player| player != the_player }
+  end
+
+  def game_over?
+    true if player_1.hit_points == 0 || player_2.hit_points == 0
   end
 end

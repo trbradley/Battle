@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
   subject(:game) { described_class.new(player_1, player_2) }
-  let(:player_1) { double :player, name: 'Johnny Cash' }
-  let(:player_2) { double :player, name: 'Bruce Springsteen', receive_damage: true }
+  let(:player_1) { double :player, name: 'Johnny Cash', hit_points: 60 }
+  let(:player_2) { double :player, name: 'Bruce Springsteen', hit_points: 60, receive_damage: true }
 
   it 'returns the names of players participating' do
     expect(game.players).to eq [player_1, player_2]
@@ -16,13 +16,6 @@ describe Game do
   it 'can return participating player 2' do
     expect(game.player_2).to eq player_2
   end
-
-  # describe '#attack' do
-  #   it 'damages the opponent\'s HP' do
-  #     expect(player_2).to receive(:receive_damage)
-  #     game.attack(player_2)
-  #   end
-  # end
 
   describe '#current_turn' do
     it 'starts as player 1' do
@@ -42,5 +35,16 @@ describe Game do
       expect(game.opponent_of(player_1)).to eq player_2
       expect(game.opponent_of(player_2)).to eq player_1
     end
+  end
+
+  describe '#game_over?' do
+    # it 'is false to start' do
+    #   expect(game.game_over?).not_to be true
+    # end
+    #
+    # it 'returns true if one player has 0 HP' do
+    #   allow(player_2).to receive(:hit_points) { 0 }
+    #   expect(game.game_over?).to be true
+    # end
   end
 end
