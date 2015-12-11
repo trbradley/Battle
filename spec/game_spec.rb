@@ -46,5 +46,13 @@ describe Game do
     #   allow(player_2).to receive(:hit_points) { 0 }
     #   expect(game.game_over?).to be true
     # end
+    it 'returns nil at start' do
+      expect(game.game_over).to eq nil
+    end
+
+    it 'returns who the loser is' do
+      allow(player_2).to receive(:hit_points) { 0 }
+      expect(game.game_over).to eq player_2
+    end
   end
 end

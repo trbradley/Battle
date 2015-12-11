@@ -30,7 +30,15 @@ class Game
     @players.find { |player| player != the_player }
   end
 
-  def game_over?
-    true if player_1.hit_points == 0 || player_2.hit_points == 0
+  # def game_over?
+  #   true if player_1.hit_points == 0 || player_2.hit_points == 0
+  # end
+
+  def game_over
+    if player_1.hit_points == 0
+      player_1
+    elsif player_2.hit_points == 0
+      player_2
+    end
   end
 end

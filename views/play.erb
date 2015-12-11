@@ -1,3 +1,6 @@
+<% if @game.game_over != nil %>
+  <%= @game.game_over.name %>: You Lose!
+<% else %>
 <%= @game.player_1_name %> vs. <%= @game.player_2_name %>
 
 <%= @game.current_turn.name %>: It is your turn!
@@ -6,3 +9,4 @@
 <%= @game.player_2_name %>: <%= @game.player_2_hp %> HP
 
 <a href='/attack'>Attack</a>
+<% end %>
