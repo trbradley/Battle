@@ -1,3 +1,9 @@
-<%= @game.previous_player.name %> attacked  <%= @game.current_turn.name %>
++<% if @game.current_turn == @game.player_1 %>
+ <%= @game.player_1.name %> attacked <%= @game.player_2.name %>
++<% else %>
++<%= @game.player_2.name %> attacked <%= @game.player_1.name %>
++<% end %>
 
-<a href='/play'>OK</a>
++<form action="/switch_turns" method="post">
++  <input type="submit" value="OK">
++</form>
