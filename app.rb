@@ -1,9 +1,16 @@
 require 'sinatra/base'
 require './lib/player'
 require './lib/game'
+require './lib/attack'
 
 class Battle < Sinatra::Base
   enable :sessions
+
+  helpers do
+    def game
+      @game ||= $game
+    end
+  end
 
   get '/' do
     erb(:index)
@@ -17,18 +24,18 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    @game = $game
+    game
     erb :play
   end
 
   get '/attack' do
-    @game = $game
-    @game.attack(@game.opponent_of(@game.current_turn))
+    @attack = Attack.new
+    @attack.default_attack(game.opponent_of(game.current_turn))
     erb :attack
   end
 
   post '/switch_turns' do
-    $game.switch_turns
+    game.switch_turns
     redirect('/play')
   end
 
