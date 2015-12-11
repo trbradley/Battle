@@ -1,12 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
 <% if @game.game_over != nil %>
   <%= @game.game_over.name %>: You Lose!
 <% else %>
-<%= @game.player_1_name %> vs. <%= @game.player_2_name %>
-
+<h1><%= @game.player_1_name %> vs. <%= @game.player_2_name %></h1>
+<br>
+<h3>
 <%= @game.current_turn.name %>: It is your turn!
+</h3>
+<br>
+<h2>
+<div id='player_1_name'><%= @game.player_1_name %>: <%= @game.player_1_hp %> HP</div>
 
-<%= @game.player_1_name %>: <%= @game.player_1_hp %> HP
-<%= @game.player_2_name %>: <%= @game.player_2_hp %> HP
+<a id='attack_link' href='/attack'>Attack</a>
 
-<a href='/attack'>Attack</a>
+<div id='player_2_name'><%= @game.player_2_name %>: <%= @game.player_2_hp %> HP</div>
+</h2>
+<br>
 <% end %>
+<img id='battle_pic' src='battlebackground.png'>
+<br>
+<audio controls>
+  <source src="music.mp3" type="audio/mp3">
+Your browser does not support the audio element.
+</audio>
+</body>
+</html>
